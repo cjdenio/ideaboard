@@ -1,0 +1,27 @@
+import { ApolloServer, gql } from "apollo-server-micro";
+
+const typeDefs = gql`
+  type Query {
+    ideas(limit: Int!, offset: Int): [Idea]
+  }
+
+  type Idea {
+    text: String!
+  }
+`;
+
+const resolvers = {
+  Query: {
+    ideas: () => {
+      return [
+        {
+          text: "bleh",
+        },
+      ];
+    },
+  },
+};
+
+const server = new ApolloServer({ typeDefs, resolvers });
+
+export default server.createHandler();
