@@ -22,6 +22,6 @@ const resolvers = {
   },
 };
 
-const server = new ApolloServer({ typeDefs, resolvers });
+const server = new ApolloServer({ typeDefs, resolvers, playground: true });
 
 export default server.createHandler({ path: "/api/graphql" });
