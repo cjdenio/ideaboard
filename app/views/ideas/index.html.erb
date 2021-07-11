@@ -1,0 +1,20 @@
+<h1>Ideaboard</h1>
+
+<%= form_with(model: Idea.new, local: false) do |form| %>
+  <div>
+    <%= form.label :body %><br>
+    <%= form.text_area :body, required: true %>
+  </div>
+
+  <div>
+    <%= form.submit "Submit" %>
+  </div>
+<% end %>
+
+<ul>
+  <% @ideas.each do |idea| %>
+    <li>
+      <%= link_to idea.body, idea, remote: false %>
+    </li>
+  <% end %>
+</ul>
