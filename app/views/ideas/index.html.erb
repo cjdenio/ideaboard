@@ -1,22 +1,28 @@
-<h1>Ideaboard</h1>
-
-<h2>Page <%= @page %></h2>
+<h1 class="title is-1">💡 Ideaboard</h1>
 
 <%= form_with model: Idea.new do |form| %>
   <div>
-    <%= form.label :body %><br>
-    <%= form.text_area :body, required: true %>
+    <%= form.label :body %>
+    <%= form.text_area :body, required: true, class: "textarea" %>
   </div>
 
   <div>
-    <%= form.submit "Submit" %>
+    <%= form.submit "Submit", class: "button" %>
   </div>
 <% end %>
 
-<ul>
+<ul class="ideas">
   <% @ideas.each do |idea| %>
-    <li>
-      <%= link_to(idea.body, idea) %>
+    <li class="idea">
+      <div class="idea__body"><%= idea.body %></div>
+      <div class="idea__actions">
+      <% unless @user.id == idea.user_id or @user.nil? %>
+        <span class="tag idea__upvote <%= "is-upvoted" if idea.user_upvoted @user.id %>" data-upvotes="<%= idea.upvote_count %>"><%= link_to("🔼 " + number_with_delimiter(idea.upvote_count), "/ideas/#{idea.id}/upvote", method: :POST, remote: true) %></span>
+      <% else %>
+        <span class="tag idea__upvote" data-upvotes="<%= idea.upvote_count %>"><%= "🔼 " + number_with_delimiter(idea.upvote_count) %></span>
+      <% end %>
+      <span class="tag">⛔️ Report</span>
+      </div>
     </li>
   <% end %>
 </ul>

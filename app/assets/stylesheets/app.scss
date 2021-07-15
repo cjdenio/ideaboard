@@ -2,7 +2,45 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-h1,
-h2 {
-  color: green;
+@import "../../../node_modules/bulma/bulma.sass";
+
+div.content {
+  width: calc(100% - 50px);
+  max-width: 1000px;
+
+  margin: 0 auto;
+
+  padding-top: 40px;
+}
+
+ul.ideas {
+  list-style-type: none;
+  margin: 0;
+
+  li.idea {
+    box-shadow: 0px 3px 8px rgb(200, 200, 200);
+    margin: 40px 0;
+
+    padding: 20px 30px;
+
+    border-radius: 10px;
+
+    font-size: 20px;
+
+    .idea__body {
+      margin-bottom: 10px;
+    }
+
+    .idea__actions > .tag {
+      cursor: default;
+    }
+
+    .idea__upvote {
+      border: 2px solid transparent;
+
+      &.is-upvoted {
+        border-color: $link;
+      }
+    }
+  }
 }
